@@ -119,7 +119,7 @@ ENV PYTHON_BIN_PATH=${PYTHON_INSTALL_PATH}\python.exe
 # Install Bazel and NuGet
 RUN setx path "C:\bin;%PYTHON_INSTALL_PATH%;%PYTHON_INSTALL_PATH%\Scripts;%PATH%" && `
     mkdir C:\bin && `
-    curl -L https://github.com/bazelbuild/bazelisk/releases/download/v1.11.0/bazelisk-windows-amd64.exe -o C:\bin\bazel.exe && `
+    curl -L https://github.com/bazelbuild/bazelisk/releases/download/v1.17.0/bazelisk-windows-amd64.exe -o C:\bin\bazel.exe && `
     curl -L https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -o C:\bin\nuget.exe
 
 COPY --from=python C:\Python C:\Python
