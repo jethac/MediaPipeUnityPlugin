@@ -25,34 +25,6 @@ load("@bazel_skylib//lib:versions.bzl", "versions")
 
 versions.check(minimum_bazel_version = "5.2.0")
 
-# ABSL cpp library lts_2023_01_25.
-http_archive(
-    name = "com_google_absl",
-    urls = [
-        "https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.0.tar.gz",
-    ],
-    patches = [
-        "@com_google_mediapipe//third_party:com_google_absl_windows_patch.diff",
-    ],
-    patch_args = [
-        "-p1",
-    ],
-    strip_prefix = "abseil-cpp-20230125.0",
-    sha256 = "3ea49a7d97421b88a8c48a0de16c16048e17725c7ec0f1d3ea2683a2a75adc21"
-)
-
-http_archive(
-    name = "rules_pkg",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.9.1/rules_pkg-0.9.1.tar.gz",
-        "https://github.com/bazelbuild/rules_pkg/releases/download/0.9.1/rules_pkg-0.9.1.tar.gz",
-    ],
-    sha256 = "8f9ee2dc10c1ae514ee599a8b42ed99fa262b757058f65ad3c384289ff70c4b8",
-)
-
-load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
-
-rules_pkg_dependencies()
 
 # mediapipe
 http_archive(
@@ -68,10 +40,23 @@ http_archive(
         # "@//third_party:mediapipe_extension.diff",
         # "@//third_party:mediapipe_emscripten_patch.diff",
     ],
-    sha256 = "DCDE71971B5FA95AC76894AC80A76E2D2B256DEE17E8A7FD4A512A478A8C4C83",
+    sha256 = "dcde71971b5fa95ac76894ac80a76e2d2b256dee17e8a7fd4a512a478a8c4c83",
     strip_prefix = "mediapipe-0.10.0",
     urls = ["https://github.com/google/mediapipe/archive/v0.10.0.tar.gz"],
 )
+
+http_archive(
+    name = "rules_pkg",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_pkg/releases/download/0.9.1/rules_pkg-0.9.1.tar.gz",
+        "https://github.com/bazelbuild/rules_pkg/releases/download/0.9.1/rules_pkg-0.9.1.tar.gz",
+    ],
+    sha256 = "8f9ee2dc10c1ae514ee599a8b42ed99fa262b757058f65ad3c384289ff70c4b8",
+)
+
+load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
+
+rules_pkg_dependencies()
 
 http_archive(
     name = "rules_cc",
@@ -99,6 +84,22 @@ http_archive(
 load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
 
 rules_foreign_cc_dependencies()
+
+# ABSL cpp library lts_2023_01_25.
+http_archive(
+    name = "com_google_absl",
+    urls = [
+        "https://github.com/abseil/abseil-cpp/archive/refs/tags/20230125.0.tar.gz",
+    ],
+    patches = [
+        "@com_google_mediapipe//third_party:com_google_absl_windows_patch.diff",
+    ],
+    patch_args = [
+        "-p1",
+    ],
+    strip_prefix = "abseil-cpp-20230125.0",
+    sha256 = "3ea49a7d97421b88a8c48a0de16c16048e17725c7ec0f1d3ea2683a2a75adc21"
+)
 
 http_archive(
     name = "com_google_protobuf",
