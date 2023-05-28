@@ -48,11 +48,13 @@ csharp_proto_src(
 csharp_proto_src(
     name = "color_cs",
     proto_src = "mediapipe/util/color.proto",
+    deps = [],
 )
 
 csharp_proto_src(
     name = "label_map_cs",
     proto_src = "mediapipe/util/label_map.proto",
+    deps = [],
 )
 
 csharp_proto_src(
